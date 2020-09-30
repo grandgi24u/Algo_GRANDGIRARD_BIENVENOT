@@ -1,0 +1,43 @@
+Fonction resoudreSoloNoble (nbJeton:entier, tab:tableau chaine [0..X][0..Y])
+
+Debut
+	fini <- faux
+	Si nbJeton = 1 alors
+		fini <- vrai
+	Sinon
+		Pour i de 0 à X faire
+			Pour j de 0 à Y faire
+				Si tab[i,j-1]="0" et tab[i,j-2]="." et fini = faux alors
+					ntab <- faireCopie(tab)
+					ntab[i,j] <- "."
+					ntab[i,j-1] <- "."
+					ntab[i,j-2] <- "0"
+					fini <- resoudreSoloNoble(nbJeton-1,ntab)
+				Fsi
+				Si tab[i,j+1]="0" et tab[i,j+2]="." et fini = faux alors
+					ntab <- faireCopie(tab)
+					ntab[i,j] <- "."
+					ntab[i,j+1] <- "."
+					ntab[i,j+2] <- "0"
+					fini <- resoudreSoloNoble(nbJeton-1,ntab)
+				Fsi
+				Si tab[i-1,j]="0" et tab[i-2,j]="." et fini = faux alors
+					ntab <- faireCopie(tab)
+					ntab[i,j] <- "."
+					ntab[i-1,j] <- "."
+					ntab[i-2,j] <- "0"
+					fini <- resoudreSoloNoble(nbJeton-1,ntab)
+				Fsi
+				Si tab[i+1,j]="0" et tab[i+2,j]="." et fini = faux alors
+					ntab <- faireCopie(tab)
+					ntab[i,j] <- "."
+					ntab[i+1,j] <- "."
+					ntab[i+2,j] <- "0"
+					fini <- resoudreSoloNoble(nbJeton-1,ntab)
+				Fsi
+			Fpour
+		Fpour
+	Fsi
+Fin	
+
+					 
