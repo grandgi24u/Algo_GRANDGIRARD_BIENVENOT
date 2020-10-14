@@ -1,9 +1,10 @@
+import java.io.IOException;
 
 public class SoloNoble {
 	
 	private Grille g;
 	
-	public SoloNoble(String args) {
+	public SoloNoble(String args) throws IOException {
 		if(args != null) {
 			this.g = new Grille(args);
 		}else {
@@ -49,12 +50,13 @@ public class SoloNoble {
 			}
 			s+="\n";
 		}
-		
+		System.out.println(s);
 		return s;
 	}
 	
-	public static void main(String[] args) {
-		SoloNoble s = new SoloNoble(args[0]);
+	public static void main(String[] args) throws IOException {
+		SoloNoble s = new SoloNoble(null);
+		s.resoudreSoloNoble(32);
 	}
 	
 }
