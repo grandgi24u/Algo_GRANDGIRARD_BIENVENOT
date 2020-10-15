@@ -1,11 +1,12 @@
-import java.io.BufferedReader;
+
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SoloNoble {
 
 	private Grille g;
+	private ArrayList<String> resultat = new ArrayList<String>();
 
 	public SoloNoble(Grille gr){
 		this.g = gr;
@@ -13,35 +14,74 @@ public class SoloNoble {
 
 	public boolean resoudreSoloNoble(int billes) {
 		Boolean fin = false;
-		if(billes == 0) {
+		
+		if(billes == 1) {
 			fin = true;
 		}else {
-			for(int i = 1; i < this.g.getHauteur()-1; i++) {
-				for(int y = 1; y < this.g.getLargeur()-1; y++) {
-					this.toString();
-					if(g.getTab()[i][y-1] == "o" && g.getTab()[i][y-2] == ".") {
-						this.g.changerVal(i,i,i,y,y-1,y-2);
-						fin = this.resoudreSoloNoble(billes-1);
-					}
-					if(g.getTab()[i][y+1] == "o" && g.getTab()[i][y+2] == ".") {
-						this.g.changerVal(i,i,i,y,y+1,y+2);
-						fin = this.resoudreSoloNoble(billes-1);
-					}
-					if(g.getTab()[i-1][y] == "o" && g.getTab()[i-2][y] == ".") {
-						this.g.changerVal(i,i-1,i-1,y,y,y);
-						fin = this.resoudreSoloNoble(billes-1);
-					}
-					if(g.getTab()[i+1][y] == "o" && g.getTab()[i+2][y] == ".") {
-						this.g.changerVal(i,i+1,i+2,y,y,y);
-						fin = this.resoudreSoloNoble(billes-1);
-					}
+			for(int i = 0; i < this.g.getHauteur(); i++) {
+				for(int y = 0; y < this.g.getLargeur(); y++) {
+					String res = this.toString();
+					try{
+						if(g.getTab()[i][y].equals("o") && g.getTab()[i][y-1].equals("o") && g.getTab()[i][y-2].equals(".") && !fin) {
+							this.g.changerVal(i,i,i,y,y-1,y-2);
+							fin = this.resoudreSoloNoble(billes-1);
+							if(!fin) {
+								this.g.retourArriere(i,i,i,y,y-1,y-2);
+							}else {
+								resultat.add(res);
+								return fin;
+							}
+						}
+					}catch(Exception e){}
+					try{
+						if(g.getTab()[i][y].equals("o") && g.getTab()[i][y+1].equals("o") && g.getTab()[i][y+2].equals(".") && !fin) {
+							this.g.changerVal(i,i,i,y,y+1,y+2);
+							fin = this.resoudreSoloNoble(billes-1);
+							if(!fin) {
+								this.g.retourArriere(i,i,i,y,y+1,y+2);
+							}else {
+								resultat.add(res);
+								return fin;
+							}
+						}
+					}catch(Exception e){}
+					try{
+						if(g.getTab()[i][y].equals("o") && g.getTab()[i-1][y].equals("o") && g.getTab()[i-2][y].equals(".") && !fin) {
+							this.g.changerVal(i,i-1,i-2,y,y,y);
+							fin = this.resoudreSoloNoble(billes-1);
+							if(!fin) {
+								this.g.retourArriere(i,i-1,i-2,y,y,y);
+							}else {
+								resultat.add(res);
+								return fin;
+							}
+						}
+					}catch(Exception e){}
+					try{
+						if(g.getTab()[i][y].equals("o") && g.getTab()[i+1][y].equals("o") && g.getTab()[i+2][y].equals(".") && !fin) {
+							this.g.changerVal(i,i+1,i+2,y,y,y);
+							fin = this.resoudreSoloNoble(billes-1);
+							if(!fin) {
+								this.g.retourArriere(i,i+1,i+2,y,y,y);
+							}else {
+								resultat.add(res);
+								return fin;
+							}
+						}
+					}catch(Exception e){}
+
 				}
 			}
 		}
-		
 		return fin;
 	}
 
+	public void afficherResultat() {
+		for(int i = this.resultat.size()-1; i >= 0; i--) {
+			System.out.println(this.resultat.get(i));
+		}
+	}
+	
 	public String toString() {
 		String s = "";
 		for(int i = 0; i < this.g.getHauteur(); i++) {
@@ -50,7 +90,6 @@ public class SoloNoble {
 			}
 			s+="\n";
 		}
-		System.out.println(s);
 		return s;
 	}
 
@@ -69,6 +108,7 @@ public class SoloNoble {
 		SoloNoble s = new SoloNoble(g);
 		
 		s.resoudreSoloNoble(g.getNbBilles());
+		s.afficherResultat();
 	}
 
 }

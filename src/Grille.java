@@ -48,6 +48,12 @@ public class Grille {
 		this.tab[i3][y3] = "o";
 	}
 	
+	public void retourArriere(int i1, int i2, int i3, int y1, int y2, int y3) {
+		this.tab[i1][y1] = "o";
+		this.tab[i2][y2] = "o";
+		this.tab[i3][y3] = ".";
+	}
+	
 	public int getHauteur() {
 		return this.tab.length;
 	}
