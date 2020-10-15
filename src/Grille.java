@@ -1,26 +1,45 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Grille {
 
 	public String[][] tab;
+	public int nbBilles;
 	
-	public Grille(String args) throws IOException {
-		if(args == null) {
-			 File f=new File("src/tablier1.txt");     //Creation of File Descriptor for input file
-		     FileReader fr=new FileReader(f);   //Creation of File Reader object
-		     BufferedReader br=new BufferedReader(fr);  //Creation of BufferedReader object
-		     int c = 0;   
-		     int i = 0;
-		     while((c = br.read()) != -1) {
-		            char character = (char) c;          //converting integer to char
-		            System.out.println(character);
-		     }
-		     br.close();
+	public Grille(File f) throws IOException {
+		FileReader fr = new FileReader(f);  
+		BufferedReader br = new BufferedReader(fr); 
+		
+		int hauteur = 0;
+        while (br.readLine() != null){
+        	hauteur++;
+        }
+        
+		int largeur = (((int) f.length())/hauteur)-1;
+		
+        String[][] tablier = new String[hauteur][largeur];
+        
+		String c = "";
+		int i = 0;  
+		
+		fr = new FileReader(f);
+		br = new BufferedReader(fr);
+		
+		while((c = br.readLine()) != null) { 
+			for(int y = 0; y < largeur; y++) {
+				tablier[i][y] = String.valueOf(c.charAt(y));	
+				if(c.charAt(y) == 'o') {
+					this.nbBilles++;
+				}
+			}         
+			i++;
 		}
+		
+		br.close();
+		
+		this.tab = tablier;
 	}
 	
 	public void changerVal(int i1, int i2, int i3, int y1, int y2, int y3) {
@@ -35,6 +54,10 @@ public class Grille {
 	
 	public int getLargeur() {
 		return this.tab[0].length;
+	}
+	
+	public int getNbBilles() {
+		return this.nbBilles;
 	}
 	
 	public String[][] getTab(){
