@@ -13,6 +13,13 @@ Debut
 					ntab[i,j+1] <- "."
 					ntab[i,j+2] <- "o"
 					fini <- resoudreSoloNoble(nbJeton-1,ntab)
+					Si fini = faux alors
+						ntab[i,j] <- "o"
+						ntab[i,j+1] <- "o"
+						ntab[i,j+2] <- "."
+					Sinon
+						retourne fin
+					Fsi
 				Fsi
 				Si tab[i,j] = "o" et tab[i-1,j]="o" et tab[i-2,j]="." et fini = faux alors
 					ntab <- faireCopie(tab)
@@ -20,6 +27,13 @@ Debut
 					ntab[i-1,j] <- "."
 					ntab[i-2,j] <- "o"
 					fini <- resoudreSoloNoble(nbJeton-1,ntab)
+					Si fini = faux alors
+						ntab[i,j] <- "o"
+						ntab[i-1,j] <- "o"
+						ntab[i-2,j] <- "."
+					Sinon
+						retourne fin
+					Fsi
 				Fsi
 				Si tab[i,j] = "o" et tab[i+1,j]="o" et tab[i+2,j]="." et fini = faux alors
 					ntab <- faireCopie(tab)
@@ -27,6 +41,13 @@ Debut
 					ntab[i+1,j] <- "."
 					ntab[i+2,j] <- "o"
 					fini <- resoudreSoloNoble(nbJeton-1,ntab)
+					Si fini = faux alors
+						ntab[i,j] <- "o"
+						ntab[i+1,j] <- "o"
+						ntab[i+2,j] <- "."
+					Sinon
+						retourne fin
+					Fsi
 				Fsi
 				Si tab[i,j] = "o" et tab[i,j-1]="o" et tab[i,j-2]="." et fini = faux alors
 					ntab <- faireCopie(tab)
@@ -34,6 +55,13 @@ Debut
 					ntab[i,j-1] <- "."
 					ntab[i,j-2] <- "o"
 					fini <- resoudreSoloNoble(nbJeton-1,ntab)
+					Si fini = faux alors
+						ntab[i,j] <- "o"
+						ntab[i,j-1] <- "o"
+						ntab[i,j-2] <- "."
+					Sinon
+						retourne fin
+					Fsi
 				Fsi
 			Fpour
 		Fpour

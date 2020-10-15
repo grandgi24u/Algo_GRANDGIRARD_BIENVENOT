@@ -115,6 +115,10 @@ public class SoloNoble {
 		for(int i = this.resultat.size()-1; i >= 0; i--) {
 			System.out.println(this.resultat.get(i));
 		}
+		System.out.println("Grille de départ");
+		System.out.println(this.resultat.get(this.resultat.size()-1));
+		System.out.println("Grille ("+this.g.getHauteur() + "," + this.g.getLargeur()+"), Nombre de billes : "+this.g.getNbBilles()+"\nSolution trouvée !");
+		
 	}
 	
 	
