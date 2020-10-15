@@ -36,15 +36,19 @@ public class SoloNoble {
 	public boolean resoudreSoloNoble(int billes) {
 		Boolean fin = false;
 		
+		//On verifie si il reste des billes sur le tablier
 		if(billes == 1) {
 			fin = true;
 		}else {
+			//On parcours le tablier
 			for(int i = 0; i < this.g.getHauteur(); i++) {
 				for(int y = 0; y < this.g.getLargeur(); y++) {
 					String res = this.toString();
+					//on verifie si on peut faire un deplacement vers la gauche
 					try{
 						if(g.testerDeplacement(i,i,i,y,y-1,y-2) && !fin) {
 							this.g.changerVal(i,i,i,y,y-1,y-2);
+							//on appelle la methode recurante
 							fin = this.resoudreSoloNoble(billes-1);
 							if(!fin) {
 								this.g.retourArriere(i,i,i,y,y-1,y-2);
@@ -54,9 +58,11 @@ public class SoloNoble {
 							}
 						}
 					}catch(Exception e){}
+					//on verifie si on peut faire un deplacement vers la droite
 					try{
 						if(g.testerDeplacement(i,i,i,y,y+1,y+2) && !fin) {
 							this.g.changerVal(i,i,i,y,y+1,y+2);
+							//on appelle la methode recurante
 							fin = this.resoudreSoloNoble(billes-1);
 							if(!fin) {
 								this.g.retourArriere(i,i,i,y,y+1,y+2);
@@ -66,9 +72,11 @@ public class SoloNoble {
 							}
 						}
 					}catch(Exception e){}
+					//on verifie si on peut faire un deplacement vers le haut
 					try{
 						if(g.testerDeplacement(i,i-1,i-2,y,y,y) && !fin) {
 							this.g.changerVal(i,i-1,i-2,y,y,y);
+							//on appelle la methode recurante
 							fin = this.resoudreSoloNoble(billes-1);
 							if(!fin) {
 								this.g.retourArriere(i,i-1,i-2,y,y,y);
@@ -78,9 +86,11 @@ public class SoloNoble {
 							}
 						}
 					}catch(Exception e){}
+					//on verifie si on peut faire un deplacement vers le bas
 					try{
 						if(g.testerDeplacement(i,i+1,i+2,y,y,y) && !fin) {
 							this.g.changerVal(i,i+1,i+2,y,y,y);
+							//on appelle la methode recurante
 							fin = this.resoudreSoloNoble(billes-1);
 							if(!fin) {
 								this.g.retourArriere(i,i+1,i+2,y,y,y);
@@ -133,8 +143,9 @@ public class SoloNoble {
 	public static void main(String[] args) throws IOException {
 		File f;
 		
+		//Verification si il y a des arguments
 		if(args.length == 0) {
-			f = new File("src/tablier1.txt"); 
+			f = new File("src/tablierDefault.txt"); 
 		}else {
 			String tablier = "src/" + args[0] + ".txt";
 			f = new File(tablier); 
