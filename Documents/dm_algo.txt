@@ -7,32 +7,32 @@ Debut
 	Sinon
 		Pour i de 0 à X faire
 			Pour j de 0 à Y faire
-				Si tab[i,j+1]="0" et tab[i,j+2]="." et fini = faux alors
+				Si tab[i,j] = "o" et tab[i,j+1]="o" et tab[i,j+2]="." et fini = faux alors
 					ntab <- faireCopie(tab)
 					ntab[i,j] <- "."
 					ntab[i,j+1] <- "."
-					ntab[i,j+2] <- "0"
+					ntab[i,j+2] <- "o"
 					fini <- resoudreSoloNoble(nbJeton-1,ntab)
 				Fsi
-				Si tab[i-1,j]="0" et tab[i-2,j]="." et fini = faux alors
+				Si tab[i,j] = "o" et tab[i-1,j]="o" et tab[i-2,j]="." et fini = faux alors
 					ntab <- faireCopie(tab)
 					ntab[i,j] <- "."
 					ntab[i-1,j] <- "."
-					ntab[i-2,j] <- "0"
+					ntab[i-2,j] <- "o"
 					fini <- resoudreSoloNoble(nbJeton-1,ntab)
 				Fsi
-				Si tab[i+1,j]="0" et tab[i+2,j]="." et fini = faux alors
+				Si tab[i,j] = "o" et tab[i+1,j]="o" et tab[i+2,j]="." et fini = faux alors
 					ntab <- faireCopie(tab)
 					ntab[i,j] <- "."
 					ntab[i+1,j] <- "."
-					ntab[i+2,j] <- "0"
+					ntab[i+2,j] <- "o"
 					fini <- resoudreSoloNoble(nbJeton-1,ntab)
 				Fsi
-				Si tab[i,j-1]="0" et tab[i,j-2]="." et fini = faux alors
+				Si tab[i,j] = "o" et tab[i,j-1]="o" et tab[i,j-2]="." et fini = faux alors
 					ntab <- faireCopie(tab)
 					ntab[i,j] <- "."
 					ntab[i,j-1] <- "."
-					ntab[i,j-2] <- "0"
+					ntab[i,j-2] <- "o"
 					fini <- resoudreSoloNoble(nbJeton-1,ntab)
 				Fsi
 			Fpour
